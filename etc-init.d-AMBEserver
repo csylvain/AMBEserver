@@ -1,0 +1,38 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:          AMBEserver
+# Required-Start:    $local_fs $remote_fs
+# Required-Stop:
+# X-Start-Before:    
+# Default-Start:     2 3 4 5
+# Default-Stop:
+# Short-Description: Provide AMBE Encode/Decode
+# Description: Provide daemon for AMBE Encoding and Decoding
+# 1. install this in /etc/init.d
+# 2. run "systemctl reexec-daemon" to auto-create systemd 'wrapper'
+### END INIT INFO
+
+N=/etc/init.d/AMBEserver
+
+set -e
+
+case "$1" in
+  start)
+	/usr/local/sbin/AMBEserver -d -i /dev/ttyUSB0 -s 460800
+	echo "Starting AMBEserver" >&2
+	exit 0
+	;;
+  stop)
+	killall AMBEserver
+	exit 0
+	;;
+  reload|restart|force-reload|status)
+	;;
+  *)
+	echo "Usage: $N {start|stop}" >&2
+	exit 1
+	;;
+esac
+
+exit 0
