@@ -11,6 +11,7 @@
 # Description: Provide daemon for AMBE Encoding and Decoding
 # 1. install this in /etc/init.d
 # 2. run "systemctl reexec-daemon" to auto-create systemd 'wrapper'
+# 3. "systemctl [start|stop|status] AMBEserver"
 ### END INIT INFO
 
 N=/etc/init.d/AMBEserver
